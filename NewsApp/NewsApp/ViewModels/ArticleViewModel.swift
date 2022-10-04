@@ -9,6 +9,10 @@ import Foundation
 
 struct ArticleListViewModel {
   private let articles: [Article]
+  
+  init(_ articles: [Article]) {
+    self.articles = articles
+  }
 }
 
 extension ArticleListViewModel {
