@@ -10,7 +10,7 @@ import Foundation
 struct ArticleList: Decodable {
   let articles: [Article]
   
-  static let placeholder: ArticleList {
+  static var placeholder: ArticleList {
     return ArticleList(articles: [])
   }
 }

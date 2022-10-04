@@ -8,7 +8,7 @@
 import Foundation
 
 struct ArticleListViewModel {
-  private let articles: [Article]
+  let articles: [Article]
   
   init(_ articles: [Article]) {
     self.articles = articles
