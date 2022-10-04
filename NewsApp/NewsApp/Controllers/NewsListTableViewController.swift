@@ -9,11 +9,13 @@ import Foundation
 import UIKit
 import RxSwift
 import RxCocoa
+import Combine
 
 class NewsListTableViewController: UITableViewController {
   
   private var viewModel: ArticleListViewModel?
   private let disposeBag = DisposeBag()
+  private var cancellables = Set<AnyCancellable>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,7 +28,16 @@ class NewsListTableViewController: UITableViewController {
     let apiKey = "332061f95205453e87c5c53efeef93f8"
     let url = URL(string: "https://newsapi.org/v2/top-headlines?country=us&apiKey=\(apiKey)")!
     
+    // Combine framework를 통한 functional programming 구독 방식 viewModel 업데이트
+    let resource = Resource<ArticleList>(url: url)
+    URLSession.loadWithCombine(resource: resource)
+      .sink(receiveValue: { [weak self] articleList in
+        self?.viewModel = ArticleListViewModel(articleList.articles)
+        self?.tableView.reloadData()
+      }).store(in: &cancellables)
+    
     // RxSwift, RxCocoa를 통한 구독방식 viewModel 업데이트
+    /*
     let resource = Resource<ArticleList>(url: url)
     URLRequest.loadWithRx(resource: resource)
       .subscribe(onNext: { [weak self] articleList in
@@ -34,6 +45,7 @@ class NewsListTableViewController: UITableViewController {
         self?.tableView.reloadData()
       })
       .disposed(by: disposeBag)
+     */
     
     // RxSwift 미사용, 일반 명령형 프로그래밍 시 API 요청 및 viewModel 업데이트
     /*

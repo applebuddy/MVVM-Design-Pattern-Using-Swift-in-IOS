@@ -24,6 +24,7 @@
 		07FA5B7628EC7570006ED685 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 07FA5B7528EC7570006ED685 /* RxCocoa */; };
 		07FA5B7828EC7570006ED685 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 07FA5B7728EC7570006ED685 /* RxSwift */; };
 		07FA5B7B28EC7B5A006ED685 /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA5B7A28EC7B5A006ED685 /* ArticleTableViewCell.swift */; };
+		07FA5B7D28EC8015006ED685 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA5B7C28EC8015006ED685 /* URLSession+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		07FA5B6D28EC731B006ED685 /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 		07FA5B7228EC750D006ED685 /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		07FA5B7A28EC7B5A006ED685 /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		07FA5B7C28EC8015006ED685 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				07FA5B7228EC750D006ED685 /* URLRequest+Extension.swift */,
+				07FA5B7C28EC8015006ED685 /* URLSession+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				07FA5B6B28EC709F006ED685 /* Article.swift in Sources */,
 				07FA5B3428EC6A6C006ED685 /* AppDelegate.swift in Sources */,
 				07FA5B7328EC750D006ED685 /* URLRequest+Extension.swift in Sources */,
+				07FA5B7D28EC8015006ED685 /* URLSession+Extension.swift in Sources */,
 				07FA5B6828EC6CFB006ED685 /* WebService.swift in Sources */,
 				07FA5B6E28EC731B006ED685 /* ArticleViewModel.swift in Sources */,
 				07FA5B3628EC6A6C006ED685 /* SceneDelegate.swift in Sources */,
