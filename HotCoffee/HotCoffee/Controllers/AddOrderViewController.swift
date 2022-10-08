@@ -33,6 +33,14 @@ extension AddOrderViewController: UITableViewDelegate, UITableViewDataSource {
     return 1
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+  }
+  
+  func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    tableView.cellForRow(at: indexPath)?.accessoryType = .none
+  }
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.viewModel.types.count
   }
