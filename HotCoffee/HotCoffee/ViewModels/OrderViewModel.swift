@@ -10,16 +10,16 @@
 import Foundation
 
 class OrderListViewModel {
-  let ordersViewModel: [OrderViewModel]
+  var orders: [OrderViewModel]
   
   init() {
-    self.ordersViewModel = [OrderViewModel]()
+    self.orders = [OrderViewModel]()
   }
 }
 
 extension OrderListViewModel {
   func orderViewModel(at index: Int) -> OrderViewModel {
-    return ordersViewModel[index]
+    return orders[index]
   }
 }
 
