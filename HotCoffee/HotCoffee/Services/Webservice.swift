@@ -8,6 +8,7 @@
 // MARK: Let's implement Webservice Client!
 
 import Foundation
+import Combine
 
 enum NetworkError: Error {
   /// couldn't decode the data
@@ -34,6 +35,23 @@ extension Resource {
 }
 
 class Webservice {
+  
+  func loadWithCombine<T>(resource: Resource<T>) -> AnyPublisher<T, Never> {
+    var request = URLRequest(url: resource.url)
+    request.httpMethod = resource.httpMethod.rawValue
+    request.httpBody = resource.body
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    return URLSession.shared.dataTaskPublisher(for: request)
+      .map(\.data)
+      .decode(type: T.self, decoder: JSONDecoder())
+      .catch { _ in
+        return Empty<T, Never>()
+      }
+      .receive(on: RunLoop.main)
+      .eraseToAnyPublisher()
+  }
+  
+  
   func load<T>(resource: Resource<T>, completion: @escaping (Result<T, NetworkError>) -> Void) {
     
     var request = URLRequest(url: resource.url)

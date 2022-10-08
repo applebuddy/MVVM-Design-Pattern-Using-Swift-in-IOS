@@ -5,10 +5,10 @@
 //  Created by MinKyeongTae on 2022/10/08.
 //
 
-import Foundation
 import UIKit
+import Combine
 
-protocol AddCoffeeOrderDelegate: class {
+protocol AddCoffeeOrderDelegate: AnyObject {
   func addCoffeeOrderViewControllerDidSave(order: Order, controller: UIViewController?)
   func addCoffeeOrderViewControllerDidClose(controller: UIViewController)
 }
@@ -20,6 +20,7 @@ class AddOrderViewController: UIViewController {
   
   private var viewModel = AddCoffeeOrderViewModel()
   private var coffeeSizesSegmentedControl: UISegmentedControl!
+  private var cancellables = Set<AnyCancellable>()
   weak var delegate: AddCoffeeOrderDelegate?
   
   override func viewDidLoad() {
@@ -29,6 +30,7 @@ class AddOrderViewController: UIViewController {
   
   private func setupUI() {
     self.coffeeSizesSegmentedControl = UISegmentedControl(items: self.viewModel.sizes)
+    self.coffeeSizesSegmentedControl.selectedSegmentIndex = 0
     self.coffeeSizesSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
     self.view.addSubview(coffeeSizesSegmentedControl)
     coffeeSizesSegmentedControl.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20).isActive = true
@@ -51,6 +53,15 @@ extension AddOrderViewController {
     viewModel.selectedType = viewModel.types[indexPath.row]
     viewModel.selectedSize = selectedSize
     
+    // Combine 활용, API 처리
+    Webservice().loadWithCombine(resource: Order.create(viewModel: viewModel))
+      .sink { [weak self] order in
+        guard let order = order else { return }
+        self?.delegate?.addCoffeeOrderViewControllerDidSave(order: order, controller: self)
+      }
+      .store(in: &cancellables)
+    
+    /*
     Webservice().load(resource: Order.create(viewModel: viewModel)) { [weak self] result in
       guard let self = self else { return }
       switch result {
@@ -66,6 +77,7 @@ extension AddOrderViewController {
         print(error)
       }
     }
+     */
   }
   
   @IBAction func close() {
