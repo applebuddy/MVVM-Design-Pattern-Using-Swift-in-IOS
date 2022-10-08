@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+protocol AddCoffeeOrderDelegate: class {
+  func addCoffeeOrderViewControllerDidSave(order: Order, controller: UIViewController?)
+  func addCoffeeOrderViewControllerDidClose(controller: UIViewController)
+}
+
 class AddOrderViewController: UIViewController {
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var nameTextField: UITextField!
@@ -15,6 +20,7 @@ class AddOrderViewController: UIViewController {
   
   private var viewModel = AddCoffeeOrderViewModel()
   private var coffeeSizesSegmentedControl: UISegmentedControl!
+  weak var delegate: AddCoffeeOrderDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -45,10 +51,17 @@ extension AddOrderViewController {
     viewModel.selectedType = viewModel.types[indexPath.row]
     viewModel.selectedSize = selectedSize
     
-    Webservice().load(resource: Order.create(viewModel: viewModel)) { result in
+    Webservice().load(resource: Order.create(viewModel: viewModel)) { [weak self] result in
+      guard let self = self else { return }
       switch result {
       case .success(let order):
         print(order)
+        guard let order = order, let delegate = self.delegate else {
+          return
+        }
+        DispatchQueue.main.async {
+          self.delegate?.addCoffeeOrderViewControllerDidSave(order: order, controller: self)
+        }
       case .failure(let error):
         print(error)
       }
@@ -56,7 +69,10 @@ extension AddOrderViewController {
   }
   
   @IBAction func close() {
-    
+    guard let delegate = self.delegate else {
+      return
+    }
+    delegate.addCoffeeOrderViewControllerDidClose(controller: self)
   }
 }
 

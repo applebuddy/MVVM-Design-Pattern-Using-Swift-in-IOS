@@ -43,6 +43,35 @@ class OrdersTableViewController: UITableViewController {
       }
     }
   }
+  
+  // 델리게이션 패턴 적용
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let viewController = segue.destination as? AddOrderViewController else {
+      fatalError("Error performing segue!")
+    }
+    // 커피 주문 save / close event를 감지하기위해 델리게이션 패턴 사용
+    viewController.delegate = self
+  }
+}
+
+extension OrdersTableViewController: AddCoffeeOrderDelegate {
+  func addCoffeeOrderViewControllerDidSave(order: Order, controller: UIViewController?) {
+    // 추가 단일 주문 받은 커피 데이터를 추가해서 테이블 뷰에 띄운다.
+    controller?.dismiss(animated: true)
+    let orderViewModel = OrderViewModel(order: order)
+    orderListViewModel.orders.append(orderViewModel)
+    tableView.insertRows(
+      at: [IndexPath(
+        row: orderListViewModel.orders.count - 1,
+        section: 0)], with: .automatic
+    )
+  }
+  
+  func addCoffeeOrderViewControllerDidClose(controller: UIViewController) {
+    controller.dismiss(animated: true)
+  }
+  
+  
 }
 
 extension OrdersTableViewController {

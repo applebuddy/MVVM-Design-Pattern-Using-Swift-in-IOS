@@ -72,7 +72,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Add New Order" id="jB6-HQ-pGM">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="L1n-pS-qFl"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="L1n-pS-qFl">
+                                            <connections>
+                                                <action selector="close" destination="g9A-ES-jp1" id="7n3-At-s1X"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Save" id="EIb-2n-Bub">
                                             <connections>
                                                 <action selector="save" destination="g9A-ES-jp1" id="2g1-ag-PiK"/>
