@@ -73,7 +73,11 @@
                                 <items>
                                     <navigationItem title="Add New Order" id="jB6-HQ-pGM">
                                         <barButtonItem key="leftBarButtonItem" title="Close" id="L1n-pS-qFl"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="EIb-2n-Bub"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="EIb-2n-Bub">
+                                            <connections>
+                                                <action selector="save" destination="g9A-ES-jp1" id="2g1-ag-PiK"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -127,6 +131,8 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
+                        <outlet property="emailTextField" destination="piS-ls-f91" id="HBC-39-0vF"/>
+                        <outlet property="nameTextField" destination="YOk-a9-dft" id="ftA-Fk-oMz"/>
                         <outlet property="tableView" destination="UQ2-q6-bTS" id="ZZs-ez-PuG"/>
                     </connections>
                 </viewController>
