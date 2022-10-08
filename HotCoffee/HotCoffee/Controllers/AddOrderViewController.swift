@@ -44,6 +44,15 @@ extension AddOrderViewController {
     viewModel.email = email
     viewModel.selectedType = viewModel.types[indexPath.row]
     viewModel.selectedSize = selectedSize
+    
+    Webservice().load(resource: Order.create(viewModel: viewModel)) { result in
+      switch result {
+      case .success(let order):
+        print(order)
+      case .failure(let error):
+        print(error)
+      }
+    }
   }
   
   @IBAction func close() {
