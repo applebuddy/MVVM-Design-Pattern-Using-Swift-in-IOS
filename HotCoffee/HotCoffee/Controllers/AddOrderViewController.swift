@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import RxSwift
 
 protocol AddCoffeeOrderDelegate: AnyObject {
   func addCoffeeOrderViewControllerDidSave(order: Order, controller: UIViewController?)
@@ -21,6 +22,7 @@ class AddOrderViewController: UIViewController {
   private var viewModel = AddCoffeeOrderViewModel()
   private var coffeeSizesSegmentedControl: UISegmentedControl!
   private var cancellables = Set<AnyCancellable>()
+  private let disposeBag = DisposeBag()
   weak var delegate: AddCoffeeOrderDelegate?
   
   override func viewDidLoad() {
@@ -54,12 +56,22 @@ extension AddOrderViewController {
     viewModel.selectedSize = selectedSize
     
     // Combine 활용, API 처리
+    /*
     Webservice().loadWithCombine(resource: Order.create(viewModel: viewModel))
       .sink { [weak self] order in
         guard let order = order else { return }
         self?.delegate?.addCoffeeOrderViewControllerDidSave(order: order, controller: self)
       }
       .store(in: &cancellables)
+    */
+    
+    // RxSwift, RxCocoa 활용, API 처리
+    Webservice().loadWithRx(resource: Order.create(viewModel: viewModel))
+      .subscribe(onNext: { [weak self] order in
+        guard let order = order else { return }
+        self?.delegate?.addCoffeeOrderViewControllerDidSave(order: order, controller: self)
+      })
+      .disposed(by: disposeBag)
     
     /*
     Webservice().load(resource: Order.create(viewModel: viewModel)) { [weak self] result in

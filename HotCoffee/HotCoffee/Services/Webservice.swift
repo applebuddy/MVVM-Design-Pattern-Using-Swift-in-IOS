@@ -9,6 +9,8 @@
 
 import Foundation
 import Combine
+import RxSwift
+import RxCocoa
 
 enum NetworkError: Error {
   /// couldn't decode the data
@@ -35,7 +37,22 @@ extension Resource {
 }
 
 class Webservice {
+  /// RxSwift Observable, RxCocoa Wrapper function을 활용한 비동기 API 처리
+  func loadWithRx<T>(resource: Resource<T>) -> Observable<T> {
+    var request = URLRequest(url: resource.url)
+    request.httpBody = resource.body
+    request.httpMethod = resource.httpMethod.rawValue
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    return Observable.just(request)
+      .flatMap { request in
+        URLSession.shared.rx.data(request: request)
+      }
+      .decode(type: T.self, decoder: JSONDecoder())
+      .observe(on: MainScheduler.instance)
+      .asObservable()
+  }
   
+  /// Combine Publisher를 활용한 비동기 API 처리
   func loadWithCombine<T>(resource: Resource<T>) -> AnyPublisher<T, Never> {
     var request = URLRequest(url: resource.url)
     request.httpMethod = resource.httpMethod.rawValue
@@ -50,7 +67,6 @@ class Webservice {
       .receive(on: RunLoop.main)
       .eraseToAnyPublisher()
   }
-  
   
   func load<T>(resource: Resource<T>, completion: @escaping (Result<T, NetworkError>) -> Void) {
     
