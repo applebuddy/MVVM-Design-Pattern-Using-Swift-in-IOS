@@ -11,6 +11,7 @@ import RxSwift
 import RxCocoa
 import Combine
 
+@MainActor
 class NewsListTableViewController: UITableViewController {
   
   private var viewModel: ArticleListViewModel?
