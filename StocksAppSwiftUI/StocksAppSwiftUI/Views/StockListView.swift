@@ -26,7 +26,7 @@ struct StockCell: View {
         Text(stock.symbol)
           .font(.custom("Arial", size: 22))
           .fontWeight(.bold)
-          .foregroundColor(Color.black)
+          .foregroundColor(Color.white)
           .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         Text(stock.description)
           .font(.custom("Arial", size: 10))
@@ -37,7 +37,7 @@ struct StockCell: View {
       
       VStack {
         Text("\(stock.price)")
-          .foregroundColor(Color.black)
+          .foregroundColor(Color.white)
           .font(.custom("Arial", size: 22))
         
         Button(stock.change) {
