@@ -15,9 +15,20 @@ class StockListViewModel: ObservableObject {
   @Published var searchTerm: String = ""
   // 프로퍼티 래퍼, @Published로 지정된 값은 변경이 될때마다 뷰를 업데이트할때 사용한다.
   @Published var stocks: [StockViewModel] = []
+  @Published var news: [NewsArticleViewModel] = []
   
   func load() {
+    fetchNews()
     fetchStocks()
+  }
+  
+  private func fetchNews() {
+    Webservice().getTopNews { [weak self] articles in
+      guard let articles = articles else {
+        return
+      }
+      self?.news = articles.map(NewsArticleViewModel.init)
+    }
   }
   
   /// ViewModel에서 Webservice를 통해 API 요청을 한다.
