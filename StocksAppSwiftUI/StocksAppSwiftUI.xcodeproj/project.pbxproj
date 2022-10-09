@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07455A1128F33A9B00C9C6A5 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07455A1028F33A9B00C9C6A5 /* Article.swift */; };
 		074E481828F2D24C005E20D9 /* StocksAppSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E481728F2D24C005E20D9 /* StocksAppSwiftUIApp.swift */; };
 		074E481A28F2D24C005E20D9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E481928F2D24C005E20D9 /* ContentView.swift */; };
 		074E481C28F2D24E005E20D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 074E481B28F2D24E005E20D9 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07455A1028F33A9B00C9C6A5 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		074E481428F2D24C005E20D9 /* StocksAppSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StocksAppSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		074E481728F2D24C005E20D9 /* StocksAppSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksAppSwiftUIApp.swift; sourceTree = "<group>"; };
 		074E481928F2D24C005E20D9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				074E484528F2D438005E20D9 /* Stock.swift */,
+				07455A1028F33A9B00C9C6A5 /* Article.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 			files = (
 				074E481A28F2D24C005E20D9 /* ContentView.swift in Sources */,
 				074E485028F2E23F005E20D9 /* StockListView.swift in Sources */,
+				07455A1128F33A9B00C9C6A5 /* Article.swift in Sources */,
 				074E481828F2D24C005E20D9 /* StocksAppSwiftUIApp.swift in Sources */,
 				074E484628F2D438005E20D9 /* Stock.swift in Sources */,
 				074E484E28F2DE4F005E20D9 /* SearchView.swift in Sources */,
