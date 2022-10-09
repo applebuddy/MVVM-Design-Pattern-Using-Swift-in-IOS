@@ -33,6 +33,19 @@ class StockListViewModel: ObservableObject {
   
   /// ViewModel에서 Webservice를 통해 API 요청을 한다.
   private func fetchStocks() {
+    // async await 방식으로 API 호출
+    Task {
+      do {
+        let stocks = try await Webservice().getStocksWithAsyncAwait()
+        DispatchQueue.main.async {
+          self.stocks = stocks?.compactMap { $0 }.map(StockViewModel.init) ?? []
+        }
+      } catch let error {
+        debugPrint(error.localizedDescription)
+      }
+    }
+    
+    /*
     Webservice().getStocks { [weak self] stocks in
       guard let stocks = stocks else {
         return
@@ -41,5 +54,6 @@ class StockListViewModel: ObservableObject {
         self?.stocks = stocks.map(StockViewModel.init)
       }
     }
+     */
   }
 }

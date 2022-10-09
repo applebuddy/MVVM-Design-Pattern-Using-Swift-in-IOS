@@ -14,6 +14,11 @@
 
 import Foundation
 
+enum AppError: Error {
+  case noData
+  case decodingFailed
+}
+
 class Webservice {
   
   func getTopNews(completion: @escaping (([Article]?) -> Void)) {
@@ -34,6 +39,21 @@ class Webservice {
         completion(articles)
       }
     }.resume()
+  }
+  
+  func getStocksWithAsyncAwait() async throws -> [Stock]? {
+    guard let url = URL(string: "https://island-bramble.glitch.me/stocks") else {
+      fatalError("URL is not correct")
+    }
+    guard let tupleData = try? await URLSession.shared.data(from: url) else {
+      throw AppError.noData
+    }
+
+    guard let jsonData = try? JSONDecoder().decode([Stock].self, from: tupleData.0) else {
+      throw AppError.decodingFailed
+    }
+    
+    return jsonData
   }
   
   func getStocks(completion: @escaping (([Stock]?) -> Void)) {
