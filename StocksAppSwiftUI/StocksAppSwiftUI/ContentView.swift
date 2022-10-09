@@ -21,6 +21,8 @@ struct ContentView: View {
   }
   
   var body: some View {
+    
+    let filteredStocks = self.stockListViewModel.searchTerm.isEmpty ? self.stockListViewModel.stocks : self.stockListViewModel.stocks.filter { $0.symbol.starts(with: self.stockListViewModel.searchTerm) }
     NavigationView {
       ZStack(alignment: .leading) {
         Color.black
@@ -34,7 +36,7 @@ struct ContentView: View {
           // SearchView의 @Binding 변수에 바인딩 변수 전달을 위해 @State 변수 이름 앞에 '$'를 붙여 전달한다.
           SearchView(searchTerm: $stockListViewModel.searchTerm)
           
-          StockListView(stocks: stockListViewModel.stocks)
+          StockListView(stocks: filteredStocks)
           
           Spacer()
         }
