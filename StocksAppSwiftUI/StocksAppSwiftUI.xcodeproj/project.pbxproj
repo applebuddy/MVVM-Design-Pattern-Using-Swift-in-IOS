@@ -19,6 +19,7 @@
 		074E484928F2D72C005E20D9 /* StockListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E484828F2D72C005E20D9 /* StockListViewModel.swift */; };
 		074E484B28F2D9BD005E20D9 /* StockViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E484A28F2D9BD005E20D9 /* StockViewModel.swift */; };
 		074E484E28F2DE4F005E20D9 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E484D28F2DE4F005E20D9 /* SearchView.swift */; };
+		074E485028F2E23F005E20D9 /* StockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E484F28F2E23F005E20D9 /* StockListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		074E484828F2D72C005E20D9 /* StockListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewModel.swift; sourceTree = "<group>"; };
 		074E484A28F2D9BD005E20D9 /* StockViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockViewModel.swift; sourceTree = "<group>"; };
 		074E484D28F2DE4F005E20D9 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		074E484F28F2E23F005E20D9 /* StockListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				074E484D28F2DE4F005E20D9 /* SearchView.swift */,
+				074E484F28F2E23F005E20D9 /* StockListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				074E481A28F2D24C005E20D9 /* ContentView.swift in Sources */,
+				074E485028F2E23F005E20D9 /* StockListView.swift in Sources */,
 				074E481828F2D24C005E20D9 /* StocksAppSwiftUIApp.swift in Sources */,
 				074E484628F2D438005E20D9 /* Stock.swift in Sources */,
 				074E484E28F2DE4F005E20D9 /* SearchView.swift in Sources */,

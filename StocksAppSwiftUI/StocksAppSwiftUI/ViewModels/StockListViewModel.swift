@@ -17,7 +17,7 @@ class StockListViewModel: ObservableObject {
   @Published var stocks: [StockViewModel] = []
   
   func load() {
-    
+    fetchStocks()
   }
   
   /// ViewModel에서 Webservice를 통해 API 요청을 한다.

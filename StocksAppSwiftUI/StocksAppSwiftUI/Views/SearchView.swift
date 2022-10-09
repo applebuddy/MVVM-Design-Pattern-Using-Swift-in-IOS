@@ -16,7 +16,7 @@ struct SearchView: View {
       TextField("Search", text: self.$searchTerm)
       Spacer()
     }
-    .frame(height: 50)
+    .frame(height: 30)
     .foregroundColor(.secondary)
     .background(Color(.secondarySystemBackground))
     .cornerRadius(10)
