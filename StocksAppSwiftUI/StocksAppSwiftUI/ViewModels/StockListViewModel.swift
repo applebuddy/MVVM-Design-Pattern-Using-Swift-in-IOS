@@ -12,9 +12,11 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Combine
+import SwiftUI
 
 class StockListViewModel: ObservableObject {
   
+  @Published var dragOffset = CGSize(width: 0, height: 650)
   @Published var searchTerm: String = ""
   // 프로퍼티 래퍼, @Published로 지정된 값은 변경이 될때마다 뷰를 업데이트할때 사용한다.
   @Published var stocks: [StockViewModel] = []

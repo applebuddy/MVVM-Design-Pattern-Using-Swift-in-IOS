@@ -42,8 +42,25 @@ struct ContentView: View {
         StockListView(stocks: filteredStocks)
           .offset(y: 200)
         
-        NewsArticleView(newsArticles: self.stockListViewModel.news)
-          .offset(y: 500)
+        NewsArticleView(
+          newsArticles: self.stockListViewModel.news,
+          onDragBegin: { value in
+            // 드래그가 시작되면 dragOffset 값을 업데이트 한다.
+            self.stockListViewModel.dragOffset = value.translation
+          },
+          onDragEnd: { value in
+            debugPrint("value.translation.height : \(value.translation.height)")
+            // Top News sheet를 위로 드래그 하면 height 100의 offset 위치로 이동하여 멈춘다.
+            if value.translation.height < 0 {
+              self.stockListViewModel.dragOffset = CGSize(width: 0, height: 100)
+            } else {
+              // Top News sheet를 아래로 드래그 하면 height 600의 offset 위치로 이동하여 멈춘다.
+              self.stockListViewModel.dragOffset = CGSize(width: 0, height: 600)
+            }
+          }
+        )
+        .animation(.spring())
+        .offset(y: self.stockListViewModel.dragOffset.height)
       }
       .navigationBarTitle("Stocks")
       .background(Color.black.ignoresSafeArea())
