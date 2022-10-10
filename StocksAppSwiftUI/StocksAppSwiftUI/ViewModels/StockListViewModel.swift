@@ -11,6 +11,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Combine
 
 class StockListViewModel: ObservableObject {
   
@@ -19,6 +20,7 @@ class StockListViewModel: ObservableObject {
   @Published var stocks: [StockViewModel] = []
   @Published var news: [NewsArticleViewModel] = []
   private let disposeBag = DisposeBag()
+  private var cancellables = Set<AnyCancellable>()
   
   func load() {
     fetchNews()
@@ -36,6 +38,21 @@ class StockListViewModel: ObservableObject {
   
   /// ViewModel에서 Webservice를 통해 API 요청을 한다.
   private func fetchStocks() {
+    // Combine을 사용한 API 호출
+    Webservice().getStocksWithCombine()
+      .map { stocks in
+        stocks.map(StockViewModel.init)
+      }
+      .sink { error in
+        print(error) // 에러가 발생 시 호출
+      } receiveValue: { [weak self] stocks in
+        self?.stocks = stocks // 데이터 정상 수신 및 디코딩 시 호출
+      }
+      .store(in: &cancellables)
+
+    
+    // RxSwift, RxCocoa를 사용한 API 호출
+    /*
     Webservice().getStocksWithRxSwift()
       .map { stocks in
         stocks.map(StockViewModel.init)
@@ -44,6 +61,7 @@ class StockListViewModel: ObservableObject {
         self?.stocks = stocks
       })
       .disposed(by: disposeBag)
+     */
     
     // async await 방식으로 API 호출
     /*

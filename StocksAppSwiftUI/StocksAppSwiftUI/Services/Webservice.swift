@@ -15,6 +15,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Combine
 
 enum AppError: Error {
   case noData
@@ -56,6 +57,18 @@ class Webservice {
     }
     
     return jsonData
+  }
+  
+  func getStocksWithCombine() -> AnyPublisher<[Stock], Error> {
+    guard let url = URL(string: "https://island-bramble.glitch.me/stocks") else {
+      fatalError("URL is not correct")
+    }
+    
+    return URLSession.shared.dataTaskPublisher(for: url)
+      .map(\.data)
+      .decode(type: [Stock].self, decoder: JSONDecoder())
+      .receive(on: RunLoop.main)
+      .eraseToAnyPublisher()
   }
   
   func getStocksWithRxSwift() -> Observable<[Stock]> {
