@@ -25,6 +25,7 @@
 		074E485028F2E23F005E20D9 /* StockListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E484F28F2E23F005E20D9 /* StockListView.swift */; };
 		07DA5CBB28F41449000C84B9 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 07DA5CBA28F41449000C84B9 /* RxCocoa */; };
 		07DA5CBD28F41449000C84B9 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 07DA5CBC28F41449000C84B9 /* RxSwift */; };
+		07DA5CC028F42A5D000C84B9 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 07DA5CBF28F42A5D000C84B9 /* URLImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07DA5CBD28F41449000C84B9 /* RxSwift in Frameworks */,
+				07DA5CC028F42A5D000C84B9 /* URLImage in Frameworks */,
 				07DA5CBB28F41449000C84B9 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +211,7 @@
 			packageProductDependencies = (
 				07DA5CBA28F41449000C84B9 /* RxCocoa */,
 				07DA5CBC28F41449000C84B9 /* RxSwift */,
+				07DA5CBF28F42A5D000C84B9 /* URLImage */,
 			);
 			productName = StocksAppSwiftUI;
 			productReference = 074E481428F2D24C005E20D9 /* StocksAppSwiftUI.app */;
@@ -284,6 +287,7 @@
 			mainGroup = 074E480B28F2D24C005E20D9;
 			packageReferences = (
 				07DA5CB928F41449000C84B9 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				07DA5CBE28F42A5D000C84B9 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 074E481528F2D24C005E20D9 /* Products */;
 			projectDirPath = "";
@@ -672,6 +676,14 @@
 				kind = branch;
 			};
 		};
+		07DA5CBE28F42A5D000C84B9 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -684,6 +696,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 07DA5CB928F41449000C84B9 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		07DA5CBF28F42A5D000C84B9 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 07DA5CBE28F42A5D000C84B9 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

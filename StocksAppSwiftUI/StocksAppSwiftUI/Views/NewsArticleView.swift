@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// MARK: 69. Downloading Images Using URLImage Package
+import URLImage
+
 struct NewsArticleView: View {
   
   let newsArticles: [NewsArticleViewModel]
@@ -57,11 +60,11 @@ struct NewsArticleView: View {
               .padding(.horizontal, 16.0)
               
               Spacer()
-              
-              //                URLImage(URL(string: article.imageURL)!,
-              //                         content: {
-              //                            $0.image.resizable()})
-              //                    .frame(width: 100, height: 100)
+
+              URLImage(
+                URL(string: article.imageURL)!,
+                content: { $0.resizable()} )
+              .frame(width: 100, height: 100)
             }
           }
         }.frame(maxWidth: .infinity)
