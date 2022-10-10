@@ -9,6 +9,8 @@
 // viewModel을 ObservableObject로 선언하여 @Published 값이 변경될 때마다 publisher 이벤트를 통해 UI를 업데이트시킬 수 있다.
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 class StockListViewModel: ObservableObject {
   
@@ -16,6 +18,7 @@ class StockListViewModel: ObservableObject {
   // 프로퍼티 래퍼, @Published로 지정된 값은 변경이 될때마다 뷰를 업데이트할때 사용한다.
   @Published var stocks: [StockViewModel] = []
   @Published var news: [NewsArticleViewModel] = []
+  private let disposeBag = DisposeBag()
   
   func load() {
     fetchNews()
@@ -33,7 +36,17 @@ class StockListViewModel: ObservableObject {
   
   /// ViewModel에서 Webservice를 통해 API 요청을 한다.
   private func fetchStocks() {
+    Webservice().getStocksWithRxSwift()
+      .map { stocks in
+        stocks.map(StockViewModel.init)
+      }
+      .subscribe(onNext: { [weak self] stocks in
+        self?.stocks = stocks
+      })
+      .disposed(by: disposeBag)
+    
     // async await 방식으로 API 호출
+    /*
     Task {
       do {
         let stocks = try await Webservice().getStocksWithAsyncAwait()
@@ -44,7 +57,8 @@ class StockListViewModel: ObservableObject {
         debugPrint(error.localizedDescription)
       }
     }
-    
+    */
+     
     /*
     Webservice().getStocks { [weak self] stocks in
       guard let stocks = stocks else {

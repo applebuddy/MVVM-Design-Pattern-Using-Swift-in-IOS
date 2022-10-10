@@ -13,6 +13,8 @@
 
 
 import Foundation
+import RxSwift
+import RxCocoa
 
 enum AppError: Error {
   case noData
@@ -54,6 +56,20 @@ class Webservice {
     }
     
     return jsonData
+  }
+  
+  func getStocksWithRxSwift() -> Observable<[Stock]> {
+    guard let url = URL(string: "https://island-bramble.glitch.me/stocks") else {
+      fatalError("URL is not correct")
+    }
+    return Observable.just(url)
+      .flatMap {
+        URLSession.shared.rx.data(request: URLRequest(url: $0))
+      }
+      .decode(type: [Stock].self, decoder: JSONDecoder())
+      .catchAndReturn([])
+      .observe(on: MainScheduler.instance)
+      .asObservable()
   }
   
   func getStocks(completion: @escaping (([Stock]?) -> Void)) {
