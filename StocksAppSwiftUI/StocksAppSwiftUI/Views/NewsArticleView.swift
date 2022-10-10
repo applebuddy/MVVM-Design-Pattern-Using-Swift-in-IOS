@@ -37,8 +37,8 @@ struct NewsArticleView: View {
                     .font(.custom("Arial", size: 22))
                     .fontWeight(.bold)
                   Text(article.title)
-                    .font(.custom("Arial", size: 22))
-                    .foregroundColor(.white)
+                    .font(.custom("Arial", size: 17))
+                    .foregroundColor(.gray)
                 }
                 
                 Spacer()

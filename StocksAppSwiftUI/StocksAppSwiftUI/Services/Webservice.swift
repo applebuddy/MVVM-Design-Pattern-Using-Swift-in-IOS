@@ -25,7 +25,7 @@ enum AppError: Error {
 class Webservice {
   
   func getTopNews(completion: @escaping (([Article]?) -> Void)) {
-    guard let url = URL(string: "https://island-bramble.glitch.me/stocks") else {
+    guard let url = URL(string: "https://island-bramble.glitch.me/top-news") else {
       fatalError("URL is not correct")
     }
     
