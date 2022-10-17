@@ -50,4 +50,27 @@ class WeatherListTableViewController: UITableViewController {
     cell.temperatureLabel.text = "70"
     return cell
   }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    if segue.identifier == "AddWeatherCityViewController" {
+      prepareSegueAddWeatherCityViewController(segue: segue)
+    }
+    
+  }
+  
+  private func prepareSegueAddWeatherCityViewController(segue: UIStoryboardSegue) {
+    guard let navigationController = segue.destination as? UINavigationController,
+          let addWeatherCityViewController = navigationController.viewControllers.first as? AddWeatherCityViewController else {
+      fatalError("there's no AddWeatherCityViewController")
+    }
+    
+    addWeatherCityViewController.delegate = self
+  }
+}
+
+extension WeatherListTableViewController: AddWeatherDelegate {
+  func addWeatherDidSave(viewModel: WeatherViewModel) {
+    print("addWeatherDidSave : \(viewModel)")
+  }
 }
