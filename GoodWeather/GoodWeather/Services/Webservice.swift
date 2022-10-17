@@ -23,7 +23,7 @@ final class Webservice {
         return
       }
       DispatchQueue.main.async {
-        completion(resource.parse(data))
+        completion(resource.parse(data)) // resource의 parse 클로져로 decoding을 진행
       }
     }
     .resume()
