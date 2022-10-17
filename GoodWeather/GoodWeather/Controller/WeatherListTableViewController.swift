@@ -59,6 +59,8 @@ class WeatherListTableViewController: UITableViewController {
     
     if segue.identifier == "AddWeatherCityViewController" {
       prepareSegueAddWeatherCityViewController(segue: segue)
+    } else if segue.identifier == "SettingsTableViewController" {
+      prepareSegueForSettingsTableViewController(segue: segue)
     }
     
   }
@@ -71,6 +73,15 @@ class WeatherListTableViewController: UITableViewController {
     
     addWeatherCityViewController.delegate = self
   }
+  
+  private func prepareSegueForSettingsTableViewController(segue: UIStoryboardSegue) {
+    guard let navigationController = segue.destination as? UINavigationController,
+          let appSettingTableViewController = navigationController.viewControllers.first as? AppSettingTableViewController else {
+      fatalError("There's no AppSettingTableViewController")
+    }
+    
+    appSettingTableViewController.delegate = self
+  }
 }
 
 extension WeatherListTableViewController: AddWeatherDelegate {
@@ -78,5 +89,11 @@ extension WeatherListTableViewController: AddWeatherDelegate {
     weatherListViewModel.addWeatherViewModel(viewModel)
     self.tableView.reloadData()
     print("addWeatherDidSave : \(viewModel)")
+  }
+}
+
+extension WeatherListTableViewController: SettingsDelegate {
+  func settingsDone(viewModel: SettingsViewModel) {
+    
   }
 }

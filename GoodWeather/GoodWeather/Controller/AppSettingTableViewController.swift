@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol SettingsDelegate {
+  func settingsDone(viewModel: SettingsViewModel)
+}
+
 class AppSettingTableViewController: UITableViewController {
   
   private var settingsViewModel = SettingsViewModel()
+  var delegate: SettingsDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -55,5 +60,11 @@ class AppSettingTableViewController: UITableViewController {
       cell.accessoryType = .checkmark
     }
     return cell
+  }
+  
+  // MARK: - Action
+  
+  @IBAction func done() {
+    delegate?.settingsDone(viewModel: self.settingsViewModel)
   }
 }
