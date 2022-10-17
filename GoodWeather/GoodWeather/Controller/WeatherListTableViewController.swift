@@ -15,7 +15,7 @@ class WeatherListTableViewController: UITableViewController {
     self.navigationController?.navigationBar.prefersLargeTitles = true
     self.tableView.separatorStyle = .singleLine
     self.tableView.separatorColor = .white
-    
+    /*
     let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=houston&appid=83ac5aa4b3c35a75018e9ffe83d7060d")!
     let resource = Resource<WeatherResponse>(url: url) { data in
       return try? JSONDecoder().decode(WeatherResponse.self, from: data)
@@ -27,6 +27,7 @@ class WeatherListTableViewController: UITableViewController {
       }
       print(weatherResponse)
     }
+     */
   }
   
   override func numberOfSections(in tableView: UITableView) -> Int {
