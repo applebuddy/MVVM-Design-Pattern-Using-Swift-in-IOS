@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Resource<T: Codable> {
+struct Resource<T> {
   let url: URL
   let parse: (Data) -> T?
 }
@@ -15,6 +15,7 @@ struct Resource<T: Codable> {
 final class Webservice {
   func load<T>(resource: Resource<T>, completion: @escaping (T?) -> Void) {
     URLSession.shared.dataTask(with: resource.url) { data, response, error in
+      print(data)
       guard let data = data else {
         DispatchQueue.main.async {
           completion(nil)
