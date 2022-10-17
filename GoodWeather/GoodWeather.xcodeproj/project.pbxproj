@@ -23,6 +23,7 @@
 		078035F228FD82E10041F337 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078035F128FD82E10041F337 /* String+Extension.swift */; };
 		078035F428FD84E20041F337 /* WeatherListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078035F328FD84E20041F337 /* WeatherListViewModel.swift */; };
 		078035F628FD8D140041F337 /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078035F528FD8D140041F337 /* Double+Extension.swift */; };
+		078035F828FD8F090041F337 /* AppSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078035F728FD8F090041F337 /* AppSettingTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		078035F128FD82E10041F337 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		078035F328FD84E20041F337 /* WeatherListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherListViewModel.swift; sourceTree = "<group>"; };
 		078035F528FD8D140041F337 /* Double+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
+		078035F728FD8F090041F337 /* AppSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				078035DD28FD5DA60041F337 /* WeatherListTableViewController.swift */,
+				078035F728FD8F090041F337 /* AppSettingTableViewController.swift */,
 				078035DF28FD5DDC0041F337 /* AddWeatherCityViewController.swift */,
 			);
 			path = Controller;
@@ -236,6 +239,7 @@
 				078035DE28FD5DA60041F337 /* WeatherListTableViewController.swift in Sources */,
 				078035F428FD84E20041F337 /* WeatherListViewModel.swift in Sources */,
 				078035CB28FD55750041F337 /* SceneDelegate.swift in Sources */,
+				078035F828FD8F090041F337 /* AppSettingTableViewController.swift in Sources */,
 				078035E928FD796F0041F337 /* WeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
