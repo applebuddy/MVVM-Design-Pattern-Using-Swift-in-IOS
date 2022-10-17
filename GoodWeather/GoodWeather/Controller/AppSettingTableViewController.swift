@@ -66,5 +66,6 @@ class AppSettingTableViewController: UITableViewController {
   
   @IBAction func done() {
     delegate?.settingsDone(viewModel: self.settingsViewModel)
+    dismiss(animated: true)
   }
 }

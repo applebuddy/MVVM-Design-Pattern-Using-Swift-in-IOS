@@ -11,12 +11,16 @@ import UIKit
 class WeatherListTableViewController: UITableViewController {
   
   private var weatherListViewModel = WeatherListViewModel()
+  private var lastUnitSelection: Unit!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.navigationBar.prefersLargeTitles = true
     self.tableView.separatorStyle = .singleLine
     self.tableView.separatorColor = .white
+    
+    let rawValue = UserDefaults.standard.value(forKey: "unit") as? String
+    self.lastUnitSelection = Unit(rawValue: rawValue ?? "") ?? Unit.fahrenheit
     /*
     let url = URL(string: "http://api.openweathermap.org/data/2.5/weather?q=houston&appid=83ac5aa4b3c35a75018e9ffe83d7060d")!
     let resource = Resource<WeatherResponse>(url: url) { data in
@@ -94,6 +98,11 @@ extension WeatherListTableViewController: AddWeatherDelegate {
 
 extension WeatherListTableViewController: SettingsDelegate {
   func settingsDone(viewModel: SettingsViewModel) {
-    
+    // 변동이 있으면 업데이트 실행
+    if lastUnitSelection.rawValue != viewModel.selectedUnit.rawValue {
+      weatherListViewModel.updateUnit(to: viewModel.selectedUnit)
+      tableView.reloadData()
+      lastUnitSelection = Unit(rawValue: viewModel.selectedUnit.rawValue)!
+    }
   }
 }

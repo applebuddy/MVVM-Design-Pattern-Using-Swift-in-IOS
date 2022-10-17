@@ -33,10 +33,8 @@ class SettingsViewModel {
       var unitValue = ""
       if let value = userDefaults.value(forKey: "unit") as? String {
         unitValue = value
-      } else {
-        userDefaults.set(Unit.celsius, forKey: "unit")
       }
-      return Unit(rawValue: unitValue) ?? .celsius
+      return Unit(rawValue: unitValue) ?? .fahrenheit
     }
     set {
       let userDefaults = UserDefaults.standard

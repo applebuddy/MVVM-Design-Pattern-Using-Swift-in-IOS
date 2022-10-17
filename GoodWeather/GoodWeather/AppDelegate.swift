@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     UIBarButtonItem.appearance().tintColor = UIColor.white
+    setupDefaultSettings()
     return true
   }
 
@@ -34,7 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
   }
-
-
+  
+  private func setupDefaultSettings() {
+    let userDefaults = UserDefaults.standard
+    if userDefaults.value(forKey: "unit") == nil {
+      userDefaults.set(Unit.fahrenheit.rawValue, forKey: "unit")
+    }
+  }
 }
 
