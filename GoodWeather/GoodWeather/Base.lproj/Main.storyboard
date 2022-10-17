@@ -12,18 +12,46 @@
         <scene sceneID="T7T-KH-nqW">
             <objects>
                 <tableViewController id="Tqx-si-6dv" customClass="WeatherListTableViewController" customModule="GoodWeather" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="3bd-SY-7ro">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="3bd-SY-7ro">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="90" id="cxb-tr-pEP">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="90"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WeatherCell" rowHeight="100" id="cxb-tr-pEP" customClass="WeatherCell" customModule="GoodWeather" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cxb-tr-pEP" id="YzZ-FX-wjx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Eg-Ca-wxa">
+                                            <rect key="frame" x="346" y="10" width="52" height="80"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3l-kV-twx">
+                                            <rect key="frame" x="25" y="21" width="46" height="58"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0Eg-Ca-wxa" firstAttribute="centerY" secondItem="p3l-kV-twx" secondAttribute="centerY" id="BnI-Ue-abe"/>
+                                        <constraint firstAttribute="trailing" secondItem="0Eg-Ca-wxa" secondAttribute="trailing" constant="16" id="Ixl-9E-zJt"/>
+                                        <constraint firstItem="p3l-kV-twx" firstAttribute="centerY" secondItem="YzZ-FX-wjx" secondAttribute="centerY" id="LeR-c6-Nuf"/>
+                                        <constraint firstAttribute="bottom" secondItem="0Eg-Ca-wxa" secondAttribute="bottom" constant="10" id="tVR-HK-ac1"/>
+                                        <constraint firstItem="p3l-kV-twx" firstAttribute="top" secondItem="YzZ-FX-wjx" secondAttribute="topMargin" constant="10" id="tdd-te-7w1"/>
+                                        <constraint firstItem="p3l-kV-twx" firstAttribute="leading" secondItem="YzZ-FX-wjx" secondAttribute="leadingMargin" constant="5" id="u6s-rl-2eP"/>
+                                        <constraint firstItem="0Eg-Ca-wxa" firstAttribute="top" secondItem="YzZ-FX-wjx" secondAttribute="top" constant="10" id="w9k-wh-NP6"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="p3l-kV-twx" secondAttribute="bottom" constant="10" id="xs8-5k-Xzm"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cityNameLabel" destination="p3l-kV-twx" id="3Xe-GD-rfy"/>
+                                    <outlet property="temperatureLabel" destination="0Eg-Ca-wxa" id="Kt6-pQ-nd1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
