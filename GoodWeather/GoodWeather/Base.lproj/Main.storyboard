@@ -79,10 +79,42 @@
                     <view key="view" contentMode="scaleToFill" id="Qld-8A-ZTZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Us6-g3-SaS">
+                                <rect key="frame" x="10" y="86" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wX-v7-ang">
+                                <rect key="frame" x="10" y="130" width="394" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <connections>
+                                    <action selector="saveCityButtonPressted" destination="Oix-zQ-uPv" eventType="touchUpInside" id="VZk-P9-l1J"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="HKt-mc-eBi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Us6-g3-SaS" firstAttribute="leading" secondItem="HKt-mc-eBi" secondAttribute="leading" constant="10" id="67u-MS-tns"/>
+                            <constraint firstItem="6wX-v7-ang" firstAttribute="top" secondItem="Us6-g3-SaS" secondAttribute="bottom" constant="10" id="9oO-lX-Ar4"/>
+                            <constraint firstItem="Us6-g3-SaS" firstAttribute="top" secondItem="HKt-mc-eBi" secondAttribute="top" constant="30" id="H5d-WF-jcn"/>
+                            <constraint firstItem="HKt-mc-eBi" firstAttribute="trailing" secondItem="Us6-g3-SaS" secondAttribute="trailing" constant="10" id="Ioe-nz-3Tz"/>
+                            <constraint firstItem="6wX-v7-ang" firstAttribute="leading" secondItem="Us6-g3-SaS" secondAttribute="leading" id="fCN-0H-H9d"/>
+                            <constraint firstItem="6wX-v7-ang" firstAttribute="trailing" secondItem="Us6-g3-SaS" secondAttribute="trailing" id="lqg-ER-y2o"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add City" id="yGK-Rb-QHn"/>
+                    <navigationItem key="navigationItem" title="Add City" id="yGK-Rb-QHn">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="XuR-qe-vhF">
+                            <connections>
+                                <action selector="close" destination="Oix-zQ-uPv" id="4CJ-bK-63K"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cityNameTextField" destination="Us6-g3-SaS" id="cSA-wn-zGM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpR-pD-7ER" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

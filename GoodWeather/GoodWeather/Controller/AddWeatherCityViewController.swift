@@ -8,5 +8,15 @@
 import UIKit
 
 class AddWeatherCityViewController: UIViewController {
+  @IBOutlet weak var cityNameTextField: UITextField!
+
+  // MARK: - Action
+
+  @IBAction func saveCityButtonPressted() {
+    
+  }
   
+  @IBAction func close() {
+    self.dismiss(animated: true)
+  }
 }
