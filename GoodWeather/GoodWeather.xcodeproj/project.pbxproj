@@ -17,6 +17,7 @@
 		078035E028FD5DDC0041F337 /* AddWeatherCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078035DF28FD5DDC0041F337 /* AddWeatherCityViewController.swift */; };
 		078035E328FD670F0041F337 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078035E228FD670F0041F337 /* WeatherCell.swift */; };
 		078035E628FD71630041F337 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078035E528FD71630041F337 /* Webservice.swift */; };
+		078035E928FD796F0041F337 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078035E828FD796F0041F337 /* WeatherResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		078035DF28FD5DDC0041F337 /* AddWeatherCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWeatherCityViewController.swift; sourceTree = "<group>"; };
 		078035E228FD670F0041F337 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		078035E528FD71630041F337 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		078035E828FD796F0041F337 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		078035C728FD55750041F337 /* GoodWeather */ = {
 			isa = PBXGroup;
 			children = (
+				078035E728FD793B0041F337 /* Models */,
 				078035E428FD715B0041F337 /* Services */,
 				078035E128FD66F50041F337 /* Custom Cells */,
 				078035DC28FD5D910041F337 /* Controller */,
@@ -101,6 +104,14 @@
 				078035E528FD71630041F337 /* Webservice.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		078035E728FD793B0041F337 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				078035E828FD796F0041F337 /* WeatherResponse.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 				078035C928FD55750041F337 /* AppDelegate.swift in Sources */,
 				078035DE28FD5DA60041F337 /* WeatherListTableViewController.swift in Sources */,
 				078035CB28FD55750041F337 /* SceneDelegate.swift in Sources */,
+				078035E928FD796F0041F337 /* WeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
