@@ -1,5 +1,5 @@
-# MVVM-Design-Pattern-Using-Swift-in-IOS
-Study for Udemy lecture, 'MVVM Design Pattern Using Swift in IOS'
+# MVVM-Design-Pattern-Using-Swift-in-iOS
+Study for Udemy lecture, 'MVVM Design Pattern Using Swift in iOS'
 - lecture link : https://www.udemy.com/course/mastering-mvvm-for-ios/
 
 <br>
