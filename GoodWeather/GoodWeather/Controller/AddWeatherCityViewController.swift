@@ -15,6 +15,7 @@ protocol AddWeatherDelegate {
 class AddWeatherCityViewController: UIViewController {
   @IBOutlet weak var cityNameTextField: UITextField!
   private var cancellables = Set<AnyCancellable>()
+  var addWeatherDidSaveSubject = PassthroughSubject<WeatherViewModel, Never>()
   
   private var addWeatherViewModel = AddWeatherViewModel()
   var delegate: AddWeatherDelegate?
@@ -38,7 +39,7 @@ class AddWeatherCityViewController: UIViewController {
       .sink { completion in
         debugPrint(completion)
       } receiveValue: { [weak self] viewModel in
-        self?.delegate?.addWeatherDidSave(viewModel: viewModel)
+        self?.addWeatherDidSaveSubject.send(viewModel)
         self?.dismiss(animated: true)
       }
       .store(in: &cancellables)

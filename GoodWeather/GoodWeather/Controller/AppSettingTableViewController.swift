@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol SettingsDelegate {
   func settingsDone(viewModel: SettingsViewModel)
@@ -15,6 +16,7 @@ class AppSettingTableViewController: UITableViewController {
   
   private var settingsViewModel = SettingsViewModel()
   var delegate: SettingsDelegate?
+  var settingDoneSubject = PassthroughSubject<SettingsViewModel, Never>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -65,7 +67,10 @@ class AppSettingTableViewController: UITableViewController {
   // MARK: - Action
   
   @IBAction func done() {
+    /*
     delegate?.settingsDone(viewModel: self.settingsViewModel)
+    */
+    settingDoneSubject.send(settingsViewModel)
     dismiss(animated: true)
   }
 }

@@ -5,13 +5,14 @@
 //  Created by MinKyeongTae on 2022/10/17.
 //
 
-import Foundation
 import UIKit
+import Combine
 
 class WeatherListTableViewController: UITableViewController {
   
   private var weatherListViewModel = WeatherListViewModel()
   private var lastUnitSelection: Unit!
+  private var cancellables = Set<AnyCancellable>()
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -75,7 +76,18 @@ class WeatherListTableViewController: UITableViewController {
       fatalError("there's no AddWeatherCityViewController")
     }
     
+    addWeatherCityViewController.addWeatherDidSaveSubject
+      .receive(on: RunLoop.main)
+      .sink { [weak self] viewModel in
+        self?.weatherListViewModel.addWeatherViewModel(viewModel)
+        self?.tableView.reloadData()
+        print("addWeatherDidSave : \(viewModel)")
+      }
+      .store(in: &cancellables)
+    
+    /*
     addWeatherCityViewController.delegate = self
+    */
   }
   
   private func prepareSegueForSettingsTableViewController(segue: UIStoryboardSegue) {
@@ -84,10 +96,25 @@ class WeatherListTableViewController: UITableViewController {
       fatalError("There's no AppSettingTableViewController")
     }
     
+    appSettingTableViewController.settingDoneSubject
+      .receive(on: RunLoop.main)
+      .sink { [weak self] viewModel in
+        // 변동이 있으면 업데이트 실행
+        guard self?.lastUnitSelection.rawValue != viewModel.selectedUnit.rawValue else {
+          return
+        }
+        self?.weatherListViewModel.updateUnit(to: viewModel.selectedUnit)
+        self?.tableView.reloadData()
+        self?.lastUnitSelection = Unit(rawValue: viewModel.selectedUnit.rawValue)!
+      }
+      .store(in: &cancellables)
+    /*
     appSettingTableViewController.delegate = self
+     */
   }
 }
 
+/*
 extension WeatherListTableViewController: AddWeatherDelegate {
   func addWeatherDidSave(viewModel: WeatherViewModel) {
     weatherListViewModel.addWeatherViewModel(viewModel)
@@ -95,7 +122,9 @@ extension WeatherListTableViewController: AddWeatherDelegate {
     print("addWeatherDidSave : \(viewModel)")
   }
 }
+*/
 
+/*
 extension WeatherListTableViewController: SettingsDelegate {
   func settingsDone(viewModel: SettingsViewModel) {
     // 변동이 있으면 업데이트 실행
@@ -106,3 +135,4 @@ extension WeatherListTableViewController: SettingsDelegate {
     }
   }
 }
+*/
